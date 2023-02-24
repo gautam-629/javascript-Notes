@@ -11,3 +11,9 @@ Q1.What are the types of Error in Javascript?
   4.Rage Error
 ->let myArray = [1, 2, 3];
    console.log(myArray[3]); // RangeError: Index out of range
+
+2. Error Handile using throw and try and catch:code
+
+3.sessionStorage vs localStorage
+->Method are same but difference is if you close the browser sessionStorage clear
+the data but not with localStorage:code
