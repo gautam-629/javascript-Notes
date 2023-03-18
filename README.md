@@ -85,3 +85,82 @@ sessionStorage.removeItem('a');
 //clear
 sessionStorage.clear();
 ```
+## 2.Object method
+```javascript
+//Object method
+const foodMap={
+    Burger:200,
+    pizza:500,
+    joice:300
+}
+delete foodMap.Burger;
+const newFoodMap=Object.assign({id:1},foodMap);// This method is used to copy the values of all enumerable properties from one or more source objects to a target object
+Object.seal(foodMap);//preventing new properties from being added to it but still allowing existing properties to be changed.
+Object.freeze(foodMap);//preventing new properties from being added to it and existing properties from being removed or changed.
+const keys= Object.keys(foodMap); // Convert the Object to an array of key
+const values= Object.values(foodMap);
+let entries=Object.entries(foodMap); // Convert the object to an array of key-value pairs
+for(let [key,value] of entries){
+   console.log(`${key}: ${value}`);
+}
+```
+## Array Method
+1. forEach vs map
+> In summary, forEach is used when you want to execute a function for each element in an array, and you don't need to return anything. map is used when you want to transform each element in an array and create a new array with the transformed values.
+``` javascript
+//forEach
+const numbers = [1, 2, 3, 4];
+numbers.forEach((num, index) => {
+  console.log(`Number ${num} at index ${index}`);
+});
+// map
+const numberss = [1, 2, 3, 4];
+const doubledNumbers = numberss.map((num) => num * 2);
+console.log(doubledNumbers); // Output: [2, 4, 6, 8]
+
+```
+2. filter
+>In JavaScript, the filter() method is used to create a new array with all elements that pass the test implemented by the provided function. The filter() method does not modify the original array.
+```javascript
+const names=["Binod","ganod","gautam"];
+let nameWithod=names.filter((value)=>value.endsWith("nod"))
+console.log(nameWithod)
+```
+3. reduce
+>In JavaScript, the reduce() method is used to reduce an array to a single value by executing a provided function for each element of the array.
+```javascript
+//reduce
+const cartBill=[20,40,32]
+const sumofCartBills=cartBill.reduce((pre,curr)=>pre+curr,0)
+console.log(sumofCartBills)
+```
+4. every
+>The "every" method returns "true" if all elements of the array pass the condition specified by the callback function. Otherwise, it returns "false".
+``` javascript
+//check if all values are number
+const gameScoreCheck=gameScore.every((v)=> typeof v==='number')
+console.log(gameScoreCheck)
+```
+5. find
+>The "find" method returns the first element in the array that satisfies the condition specified by the callback function. If no element satisfies the condition, it returns "undefined".
+```javascript
+const numbers = [1, 2, 3, 4, 5];
+const evenNumber = numbers.find(function(number) {
+  return number % 2 === 0;
+});
+
+console.log(evenNumber); // Output: 2
+
+```
+6. some
+>The "some" method returns "true" if at least one element of the array satisfies the condition specified by the callback function. Otherwise, it returns "false".
+
+``` javascript
+const numbers = [1, 2, 3, 4, 5];
+const hasEvenNumber = numbers.some(function(number) {
+  return number % 2 === 0;
+});
+
+console.log(hasEvenNumber); // Output: true
+
+```
