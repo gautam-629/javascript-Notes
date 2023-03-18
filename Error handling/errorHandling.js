@@ -4,7 +4,7 @@ function div(a,b){
     throw "Second parameter cannot be Zero";
     throw new Error("Second parameter cannot be Zero")
     throw new SyntaxError("Second parameter cannot be Zero")
-    
+
     return a/b;
 }
 console.log(div(1,0));

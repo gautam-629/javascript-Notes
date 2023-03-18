@@ -1,23 +1,23 @@
 //1. localStorage(api)->both key abd value be set string
 //set
-// localStorage.setItem('name','Binod');
-// localStorage.setItem('a','45');
-// localStorage.setItem('b','5');
+localStorage.setItem('name','Binod');
+localStorage.setItem('a','45');
+localStorage.setItem('b','5');
 
 // // get
-// let a=localStorage.getItem('a');
-// let b=localStorage.getItem('b');
-// // console.log(+a + +b);
-// console.log(parseInt(a)+parseInt(b));
+let a1=localStorage.getItem('a');
+let b1=localStorage.getItem('b');
+// console.log(+a + +b);
+console.log(parseInt(a)+parseInt(b));
 
 // //update->not directly update but change key
-// localStorage.setItem('a','90');
+localStorage.setItem('a','90');
 
 // //remove item
-// localStorage.removeItem('a');
+localStorage.removeItem('a');
 
 // //clear
-// localStorage.clear();
+localStorage.clear();
 
 
 // SessionStorage(api)->both key abd value be set string
