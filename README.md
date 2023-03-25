@@ -48,8 +48,8 @@ try {
 }
 ```
 # 3. sessionStorage vs localStorage
-Method are same but difference is if you close the browser sessionStorage clear
-the data but not with localStorage
+>Method are same but difference is if you close the browser sessionStorage clear the data but not with localStorage
+
 ```javascript
 //1. localStorage(api)->both key abd value be set string
 //set
@@ -85,7 +85,7 @@ sessionStorage.removeItem('a');
 //clear
 sessionStorage.clear();
 ```
-## 2.Object method
+## 4.Object method
 ```javascript
 //Object method
 const foodMap={
@@ -104,7 +104,7 @@ for(let [key,value] of entries){
    console.log(`${key}: ${value}`);
 }
 ```
-## Array Method
+## 5.Array Method
 1. forEach vs map
 > In summary, forEach is used when you want to execute a function for each element in an array, and you don't need to return anything. map is used when you want to transform each element in an array and create a new array with the transformed values.
 ``` javascript
@@ -163,4 +163,78 @@ const hasEvenNumber = numbers.some(function(number) {
 
 console.log(hasEvenNumber); // Output: true
 
+```
+## 6. Spread operator vs Rest operator
+>In summary, the spread operator is used to expand an iterable object(array,string) into individual elements(unpacks), while the rest operator is used to represent an indefinite number of arguments as an array(packs).
+```javascript
+// generally used to copy,merge,compose array and object
+const arr1 = [1, 2, 3];
+const arr2 = [4, 5, 6];
+const combined = [...arr1, ...arr2]; // spread operator
+console.log(combined); // Output: [1, 2, 3, 4, 5, 6]
+
+//Rest operator
+function sum(...numbers) {
+  return numbers.reduce((acc, curr) => acc + curr, 0);
+}
+
+console.log(sum(1, 2, 3)); // Output: 6
+console.log(sum(4, 5, 6, 7)); // Output: 22
+
+```
+## 7. Normal function vs Arrow function
+1. Arguments Object are Not Available in Arrow function
+``` javascript
+function display1(){
+   console.log(arguments)
+}
+display1(1,2,3,4,5)
+
+let display2=()=>{
+    console.log(arguments)
+}
+display2(2,4,5,3,7)
+```
+2. Arrow function do not have their own this
+```javascript
+ 
+let obj={
+    name:"Binod",
+    
+    sayName(){
+        console.log(this.name)
+    },
+    sayNameArrow:()=>{
+        console.log(this.name) // arrow function do not have this keyword
+    }
+}
+obj.sayName(); //Binod
+obj.sayNameArrow() // undefined
+```
+3. implicity return by the arrow function
+
+
+8.This keyWord
+1. this keyword reference current object
+``` javascript
+let obj={
+    name:"Binod",
+    
+    sayName(){
+        console.log(this.name)
+    },
+    sayNameArrow:()=>{
+        console.log(this.name) // Arrow function do not have this keyword
+    }
+}
+obj.sayName(); //Binod
+obj.sayNameArrow() // undefined
+```
+2. The value of this keyword depends on How you call a function
+```javascript
+function check(){
+   console.log(this)
+}
+check() // global object or window
+new check(); // check{} object
 ```
