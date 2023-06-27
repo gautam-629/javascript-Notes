@@ -1,5 +1,14 @@
-function testOne(){
-   let args=Array.from(arguments)
-   console.log(args)
+function register(){
+ return  new Promise((resolve,reject)=>{
+            resolve("done");
+            // reject("something went wrong")
+   })
 }
-testOne(1,2,3,4,5,3,5)
+
+(
+  async ()=>{
+     await register().then(data=>console.log(data)).catch(err=>console.log(err))
+      // const result= await register();
+      // console.log(result)
+   }
+)()

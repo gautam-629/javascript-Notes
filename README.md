@@ -1,5 +1,5 @@
 ## 1.What are the types of Error in Javascript
-=> Generally 4 types the are
+>**Generally 4 types the are**
   1. syntax Error
   ``` javascript
  let java is fun=true;
@@ -237,4 +237,60 @@ function check(){
 }
 check() // global object or window
 new check(); // check{} object
+```
+
+## 8 Date and time
+
+```javascript
+// current data in milisecond
+let currentDate=new Date().getTime()
+console.log(currentDate)
+
+let currentDate2= Date.now()
+console.log(currentDate2)
+```
+
+>**point to know**
+1. Both methods essentially provide the same result: the current timestamp. However, Date.now() is generally preferred in modern JavaScript code due to its simplicity and efficiency. It eliminates the need to create a new Date object, resulting in slightly better performance. Therefore, if you only need the current timestamp, it is recommended to use Date.now().
+
+>**simple digital clock**
+```HTMl
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Digital Clock</title>
+    <style>
+      body {
+        text-align: center;
+        font-family: "Arial", sans-serif;
+      }
+      
+      #clock {
+        font-size: 48px;
+        font-weight: bold;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Digital Clock</h1>
+    <div id="clock"></div>
+
+    <script>
+      function updateClock() {
+        var now = new Date();
+        var hours = now.getHours();
+        var minutes = now.getMinutes();
+        var seconds = now.getSeconds();
+
+        var time = hours + ":" + minutes + ":" + seconds;
+        document.getElementById("clock").textContent = time;
+      }
+
+      // Update the clock every second
+      setInterval(updateClock, 1000);
+    </script>
+  </body>
+</html>
+
 ```
