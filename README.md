@@ -103,6 +103,12 @@ let entries=Object.entries(foodMap); // Convert the object to an array of key-va
 for(let [key,value] of entries){
    console.log(`${key}: ${value}`);
 }
+
+//aso decleare
+let person = Object.freeze({
+    name: 'John',
+    age: 30,
+  });
 ```
 ## 5.Array Method
 1. forEach vs map
@@ -214,7 +220,7 @@ obj.sayNameArrow() // undefined
 3. implicity return by the arrow function
 
 
-8.This keyWord
+## 8.This keyWord
 1. this keyword reference current object
 ``` javascript
 let obj={
@@ -292,5 +298,321 @@ console.log(currentDate2)
     </script>
   </body>
 </html>
+
+```
+## 9.Scope
+There  are 4 types of scope **Block scope,Global Scope,function Scope,Module Scope**
+
+1. **Block scope**
+Varible declared with let and const is a block scope(means only accessable only inside a block) but not with var
+
+```javascript
+{
+    const z=90
+    let a=40;
+    console.log(a);
+    var c=90
+}
+console.log(c);
+console.log(a) // not working
+console.log(z) // not working
+```
+2. **function scope**
+```javascript
+function show(){
+    let a=90;
+    var b=56;
+    const x=90
+}
+console.log(a)
+console.log(b)
+console.log(x)
+```
+
+3. **global scope**
+Any Variable/expression which is Written outSide i.e not inside the function,blocks etc. this is shared across the file
+
+4. **module Scope**
+In modern js,a file can be considered as module,where we use export and import syntax to use variable file.
+
+```javascript
+
+<script src="index.js" type="module"></script>
+
+export{someVar,someFunc}
+
+import {someVar } from './app.js'
+```
+
+## 10. Variable
+>**Variables** are buckets in the memory which store values.
+1. **Let**
+- this is create a block scope
+- re-declarationn is Not allowed (in same scope)
+- re-assignment is allwoed
+2. **const**
+- this create a block scope
+- re-declaration is Not allowed
+- re-assignment is Not allowed
+- must be assigned at declaration time
+3. **var**
+- it cannot have block scope and can be re-declared.
+- it only had function scope
+- var are hosited, so they can be used before the declaration
+
+>**Question combination **closure,scope,and Event loop**
+1. Explain how output become 4 4 4 4
+``` javascript
+function show(){
+    for(var i=0;i<4;i++){
+        setTimeout(()=>{
+           console.log(i)
+        },2000)
+    }
+}
+show() // output 4 4 4 4
+```
+> **Explain**
+1. The show() function is called.
+2. The for loop initializes i to 0.
+3. Inside the loop, the setTimeout function is called for each iteration.
+4. The callbacks are scheduled to execute after a 2-second delay.
+5. The loop continues, incrementing i to 1, 2, and 3.
+6. The loop ends when i becomes 4.
+7. After 2 seconds, the first callback is executed and prints 4 to the console.
+8. Similarly, after 2 seconds, the remaining callbacks are executed and also print 4 to the console.
+
+``` javascript
+// solution
+function show() {
+  for (var i = 0; i < 4; i++) {
+    (function (num) {
+      setTimeout(function () {
+        console.log(num);
+      }, 2000);
+    })(i);
+  }
+}
+
+show(); 
+``` 
+2. Explain how output become 0,1,2,3
+```javascript
+function show(){
+    for(let i=0;i<4;i++){
+        setTimeout(()=>{
+           console.log(i)
+        },2000)
+    }
+}
+show(); //output 0,1,2,3
+```
+> **Explain**
+1. The show() function is called.
+2. The for loop initializes i to 0 and checks the condition i < 4.
+3. Inside the loop, the setTimeout function is called for each iteration.
+4. The callbacks are scheduled to execute after a 2-second delay.
+5. The loop continues, incrementing i to 1, 2, and 3.
+6. For each iteration, the callback captures the value of i at that specific iteration because let creates a new block scope.
+7. After 2 seconds, the first callback is executed and prints 0 to the console.
+8. Similarly, after 2 seconds, the remaining callbacks are executed and print 1, 2, and 3 to the console, respectively.
+
+## 11.DataTypes
+>**Primitive data Types**
+1. **Number:** Represents numeric values. It includes integers, floating-point numbers, and special numeric values like **NaN (Not a Number)** and Infinity.
+2. **String:** Represents textual data enclosed in single quotes ('') or double quotes ("").
+3. Boolean: Represents logical values, either true or false.
+4. **null:** Represents the intentional absence of any object value. It is a primitive value.
+5. **undefined:** Represents a variable that has been declared but has not been assigned a value.
+6. **Symbol:** Represents a unique and immutable value that can be used as an identifier for object properties.
+
+> **Reference Data Types:**
+1. **Object:** Represents complex data structures. Objects are collections of key-value pairs and can include properties and methods. Objects can be created using object literals ({}) or by using constructors like new Object().
+2. **Array:** Represents ordered collections of values. Arrays are a special type of object that have numbered indices starting from 0. They can be created using square brackets ([]) or with the Array constructor.
+
+3. **RegExp:** Represents regular expressions, which are used for pattern matching and searching within strings.
+
+>**Difference btw primitive and Reference Data Types**
+1. Primitive data types are immutable, which means their values cannot be changed. where Reference data types are mutable, which means their values can be modified.
+```javascript
+// Primitive data types
+let str = 'Hello';
+
+console.log(str); // Output: Hello
+
+// Performing operations or modifications
+str += ' World'; // Concatenating a new string
+
+console.log(str); // Output: Hello World (a new string is created, the original value is not modified)
+
+//Reference data Types
+function modifyArray(arr) {
+    arr.push('Modified');
+    console.log('Inside function:', arr);
+  }
+  
+  let originalArray = ['Original'];
+  console.log('Before function call:', originalArray);
+  
+  modifyArray(originalArray);
+  
+  console.log('After function call:', originalArray);
+  
+```
+2. When assigning a primitive value to a variable or passing it as a function argument, a copy of the value is made.
+where in **Reference data types**
+When assigning a reference value to a variable or passing it as a function argument, a reference to the data is copied, not the actual data itself.
+
+```javascript
+// primitive
+function modifyValue(value) {
+  value = 'Modified';
+  console.log('Inside function:', value);
+}
+
+let originalValue = 'Original';
+console.log('Before function call:', originalValue);
+
+modifyValue(originalValue);
+
+console.log('After function call:', originalValue);
+
+// Reference
+function modifyObject(obj) {
+  obj = { property: 'Modified' };
+  console.log('Inside function:', obj);
+}
+
+let originalObject = { property: 'Original' };
+console.log('Before function call:', originalObject);
+
+modifyObject(originalObject);
+
+console.log('After function call:', originalObject);
+
+//output
+Before function call: { property: 'Original' }
+Inside function: { property: 'Modified' }
+After function call: { property: 'Original' }
+
+```
+## 11.Introduction
+javascript is a  multi purpose and **multi paradigm**(object-oriented, functional, and event-driven programming,Procedural Programming) language.
+
+## 12. Asynchronous JavaScript
+Asynchronous programming in JavaScript is achieved through the use of **callbacks, promises,and async/await syntax.**
+
+1. **callbacks**
+ - callbacks is a function that pass arguments as a another function
+ ``` javascript
+ function greet(name, callback) {
+  console.log("Hello, " + name + "!");
+  callback();
+}
+
+function sayGoodbye() {
+  console.log("Goodbye!");
+}
+
+greet("Alice", sayGoodbye);
+ ```
+ 2. **Promises**
+ - Promises(object) greatly simplify handling asynchronous code compared to traditional callback-based approaches, making it easier to write and maintain asynchronous JavaScript code.
+
+> **Advantage**
+
+ 1. Avoiding Callback Hell
+ 2. Overall, promises provide a more organized and manageable way to handle asynchronous code, offering better readability, error handling, composition, and control over the flow of operations.
+
+ >**simple example using then and catch**
+ ```javascript
+ // Creating a Promise
+const myPromise = new Promise((resolve, reject) => {
+  // Perform an asynchronous operation
+  const randomNumber = Math.random();
+
+  if (randomNumber < 0.5) {
+    // Resolve the promise if the random number is less than 0.5
+    resolve(randomNumber);
+  } else {
+    // Reject the promise if the random number is greater than or equal to 0.5
+    reject(new Error('Random number is too high!'));
+  }
+});
+// Consuming the Promise
+myPromise
+  .then((result) => {
+    console.log('Promise resolved with result:', result);
+  })
+  .catch((error) => {
+    console.log('Promise rejected with error:', error.message);
+  });
+ ```
+ >**Simple example using async,await and catch**
+ ```javascript
+ const myPromise = () => {
+    return new Promise((resolve, reject) => {
+      const randomNumber = Math.random();
+  
+      if (randomNumber < 0.5) {
+        // Resolve the promise if the random number is less than 0.5
+        resolve(randomNumber);
+      } else {
+        // Reject the promise if the random number is greater than or equal to 0.5
+        reject(new Error('Random number is too high!'));
+      }
+    });
+  };
+  
+  // Using await with Promises
+  async function fetchData() {
+    try {
+      const result = await myPromise();
+      console.log('Promise resolved with result:', result);
+    } catch (error) {
+      console.log('Promise rejected with error:', error.message);
+    }
+  }
+  
+  // Calling the async function
+  fetchData().then(()=>{
+    console.log("done")
+  });
+  
+ ```
+ >**then vs wait**
+ 1. Both await and then() are used to handle promises, 
+but await is typically used within an async function to simplify the syntax and make asynchronous code appear more synchronous, while then() allows for more fine-grained control and chaining of asynchronous operations.
+
+## 13.higherOrderFunction
+A higher-order function is a function that takes one or more functions a
+s arguments and/or returns a function as its result.
+
+```javascript
+function higherOrderFunction(callback) {
+  // Perform some operations
+  // Call the callback function
+  callback();
+}
+
+function callbackFunction() {
+  console.log("I'm the callback function!");
+}
+
+higherOrderFunction(callbackFunction);
+
+
+// example number 2
+function higherOrderFunction() {
+  // Return a new function
+  return function() {
+    console.log("I'm the returned function!");
+  };
+}
+
+const returnedFunction = higherOrderFunction();
+returnedFunction();
+/////////////
+example: map, filter, reduce, and forEach,
 
 ```
