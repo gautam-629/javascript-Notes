@@ -170,6 +170,32 @@ const hasEvenNumber = numbers.some(function(number) {
 console.log(hasEvenNumber); // Output: true
 
 ```
+7. **Array.from()**
+``` javascript
+// Example 1: Convert a string into an array
+const str = 'Hello';
+const strArray = Array.from(str);
+
+console.log(strArray);
+```
+>**Here is a list of JavaScript array methods that can modify the original array:**
+1. copyWithin()
+2. fill()
+3. pop()
+4. push()
+5. reverse()
+6. shift()
+7. sort()
+8. splice()
+9. unshift()
+```javascript
+const numbers = [10, 5, 80, 4];
+
+numbers.sort((a, b) => a - b);
+
+console.log(numbers); // Output: [4, 5, 10, 80]
+
+```
 ## 6. Spread operator vs Rest operator
 >In summary, the spread operator is used to expand an iterable object(array,string) into individual elements(unpacks), while the rest operator is used to represent an indefinite number of arguments as an array(packs).
 ```javascript
@@ -616,3 +642,20 @@ returnedFunction();
 example: map, filter, reduce, and forEach,
 
 ```
+## 14.String
+Certainly! Here is a comprehensive list of JavaScript methods that can be used for both strings and arrays:
+1. length
+2. concat()
+3. indexOf()
+4. lastIndexOf()
+5. slice()
+6. toLowerCase()
+7. toUpperCase()
+8. split()
+9. join()
+10. toString()
+11. reverse()
+12. includes()
+13. startsWith()
+14. endsWith()
+15. trim()
