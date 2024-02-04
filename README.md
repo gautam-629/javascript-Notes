@@ -659,3 +659,29 @@ Certainly! Here is a comprehensive list of JavaScript methods that can be used f
 13. startsWith()
 14. endsWith()
 15. trim()
+
+```javascript
+//This function is used to parse a JSON string and convert it into a JavaScript object.
+
+
+const jsonString = '{"name": "John", "age": 30, "city": "New York"}';
+const parsedObject = JSON.parse(jsonString);
+
+console.log(parsedObject.name); // Output: John
+console.log(parsedObject.age); // Output: 30
+console.log(parsedObject.city); // Output: New York
+
+ //This function is used to convert a JavaScript object into a JSON string.
+const person = {
+    name: "John",
+    age: 30,
+    city: "New York"
+  };
+  
+  const jsonStrin= JSON.stringify(person);
+  
+  console.log(jsonStrin); // Output: {"name":"John","age":30,"city":"New York"}
+  
+
+
+```
