@@ -630,16 +630,38 @@ In other words, asynchronous operations allow JavaScript to perform tasks such a
 - callbacks is a function that pass arguments as a another function
 
 ```javascript
-function greet(name, callback) {
-  console.log("Hello, " + name + "!");
-  callback();
+// Simulating an asynchronous file reading function using setTimeout
+function readFile(fileName, callback) {
+  console.log(`Reading file: ${fileName}`);
+  setTimeout(() => {
+    const fileContent = `Content of ${fileName}`;
+    // Once file is "read", the callback is called with the file content
+    callback(null, fileContent);
+  }, 2000); // Simulating a delay of 2 seconds
 }
 
-function sayGoodbye() {
-  console.log("Goodbye!");
+// Process the file content
+function processFileContent(err, content) {
+  if (err) {
+    console.log("Error reading the file:", err);
+    return;
+  }
+  console.log("Processing file content:");
+  console.log(content);
 }
 
-greet("Alice", sayGoodbye);
+// Main function to simulate reading and processing files
+function main() {
+  console.log("Starting file reading process...");
+
+  // Calling the asynchronous function readFile and passing a callback
+  readFile("example.txt", processFileContent);
+
+  // Meanwhile, other tasks can be executed
+  console.log("File reading is in progress...");
+}
+
+main();
 ```
 
 2.  **Promises**
